@@ -11,7 +11,7 @@ def generate_entangled_photons():
     qc.h(1)
 
     # Apply a controlled-RZ gate (CRz) to simulate the beamsplitter interaction
-    qc.crz(2 * pi / 4, 0, 1)  # Adjust angle for different entanglement strengths
+    qc.crz(2 * np.pi / 4, 0, 1)  # Adjust angle for different entanglement strengths
 
     return qc
 
@@ -22,7 +22,7 @@ def perform_measurement(qc):
     
     # Simulate the quantum circuit
     simulator = Aer.get_backend('qasm_simulator')
-    result = execute(qc, simulator, shots=1).result()
+    result = execute(qc, simulator, shots=1024).result()  # Increased shots for better statistics
     
     # Get the measurement outcome
     counts = result.get_counts()
